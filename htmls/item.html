@@ -20,9 +20,9 @@
 				<hr>
 				<!-- tab列表 -->
 			<div class="tab">									
-				<li ><a onclick="sellPage">帮一帮</a></li>
-				<li ><a onclick="helpPage">找一找</a></li>
-				<li><a>个人中心</a></li>
+				<li v-on:click="sellPage"><a >帮一帮</a></li>
+				<li v-on:click="helpPage"><a >找一找</a></li>
+				<li v-on:click="selfPage"><a>个人中心</a></li>
 				
 			</div>
 			
@@ -53,6 +53,7 @@
 		var config = {
 			"el": "#app",
 			"data": {
+				"userId":"",
 				"itemList":[],
 				"itemHelpList":[],
 				"itemSellList":[]
@@ -63,13 +64,18 @@
 				},
 				"helpPage":function(){
 					this.itemList = this.itemHelpList
+				},
+				"selfPage":function(){
+					var url=serverUrl+"/htmls/me.html?id="+this.userId
+					window.open(url)	
 				}
 			},
 			"mounted": function() {
+				var p=location.search
+				var array=p.split(/&|=/)
 				
-				// this.selectByCategoryId(1)
-				var p=location.search//?id=1
-				var array=p.split(/&|=/)//[0]=?id  [1]=1
+				this.userId=array[1]
+				
 				var url = serverUrl+"/item/selectAll?id="+array[1]
 				+"&nickName="+array[3]
 				+"&universityName="+array[5]
@@ -84,7 +90,7 @@
 						var state = response.data.state	
 						//把list里的item按照主标签分类
 						for(i = 0;i < list.length;i++){
-							if(list[i].mainLabel == "SELL"){
+							if(list[i].mainLabel == "交易"){
 								this.vue.itemSellList.push(list[i])							
 							}else{
 								this.vue.itemHelpList.push(list[i])
