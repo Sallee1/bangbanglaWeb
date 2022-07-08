@@ -25,8 +25,8 @@
 
 		<!-- 列表展示区域 -->
 		<div id="app">
-			<div v-for="item in itemHelpList" style="padding-left:250px;height: 200px;">
-				<img :src="item.image" style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
+			<div v-for="item in itemSellList" style="padding-left:250px;height: 200px;">
+				<img :src="'resource/'+item.imagePath" style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
 				<div style="float: right;margin-left:1em;max-width: 100%;max-height: 100%;">
 					<h2>{{item.title}}</h2>
 					<small>
@@ -81,18 +81,15 @@
 						//response有6个属性，其中data放的是服务器返回的结果
 						//把serverResult里的data赋值给list
 						var list=response.data.data
-						var state = response.data.state
-						console.log(list)
+						var state = response.data.state	
+						//把list里的item按照主标签分类
 						for(i = 0;i < list.length;i++){
 							if(list[i].mainLabel == "SELL"){
-								this.vue.itemSellList.add(list[i])
-								window.alert("出售物品")
+								this.vue.itemSellList.push(list[i])							
 							}else{
-								this.vue.itemHelpList.add(list[i])
-								window.alert("求助")
+								this.vue.itemHelpList.push(list[i])
 							}
 						}
-						
 					})
 					.catch(function(e) {
 						window.alert("联网出错")
