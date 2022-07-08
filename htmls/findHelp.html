@@ -12,46 +12,43 @@
 <body>
   <!-- 主标题 -->
   <h1 style="font-size: 2.33em">帮帮拉</h1>
-</body>
-<div style="color:gray;">大学生互助平台</div>
-<hr>
-<!-- tab列表 -->
-<div class="tab">
-  <li><a>帮一帮</a></li>
-  <li><a>找一找</a></li>
-  <li><a>个人中心</a></li>
-</div>
-<div style="clear:both"></div>
+  <div style="color:gray;">大学生互助平台</div>
+  <hr>
+  <!-- 首页按钮 -->
+  <div style="width:100px;height:100px;background-color:#FFF;border-radius:50%;box-shadow:3px 3px 10px;position: fixed;bottom: 32px;right: 32px;display: flex;">
+  <img src="resource/首页.svg" width="70%" height="70%" style="justify-content: center;">
+  </div>
+  <div style="clear:both"></div>
 
-<!-- 列表展示区域 -->
-<div id="app">
-<table border = 0>
-  <tr>
-    <td>标题：</td>
-    <td><input v-model="title"></td>
-  </tr>
-  <tr>
-    <td style="vertical-align: top;">简介：</td>
-    <td><textarea v-model="introduction" style="width:100%;height: 15em;font-size: 1em;"></textarea></td>
-  </tr>
-  <tr>
-    <td>主标签：</td>
-    <td>
-      <select v-model="mainLabel">
-        <option>二手贩卖</option>
-        <option>同学互助</option>
-      </select>
-      积分：<input type="number" style="width: 4em;">
-      副标签：<input style = "width: 21em;"  v-model="subLabel">
-    </td>
-  </tr>
-  <tr>
-    <td>上传图像</td>
-    <td><button>上传</button>{{images}}</td>
-  </tr>
-</table>
-<button>提交需求</button> 一旦提交只能修改奖赏
-</div>
+  <!-- 列表展示区域 -->
+  <div id="app">
+    <table border=0>
+      <tr>
+        <td>标题：</td>
+        <td><input v-model="title"></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">简介：</td>
+        <td><textarea v-model="introduction" style="width:100%;height: 15em;font-size: 1em;"></textarea></td>
+      </tr>
+      <tr>
+        <td>主标签：</td>
+        <td>
+          <select v-model="mainLabel">
+            <option>二手贩卖</option>
+            <option>同学互助</option>
+          </select>
+          积分：<input type="number" style="width: 4em;">
+          副标签：<input style="width: 21em;" v-model="subLabel">
+        </td>
+      </tr>
+      <tr>
+        <td>上传图像</td>
+        <td><button>上传</button>{{images}}</td>
+      </tr>
+    </table>
+    <button>提交需求</button> 一旦提交只能修改奖赏
+  </div>
 </body>
 <script src="js/vue.js"></script>
 <script src="js/axios.min.js"></script>
@@ -82,4 +79,5 @@
   }
   var vue = new Vue(config)
 </script>
+
 </html>

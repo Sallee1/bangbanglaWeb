@@ -12,43 +12,41 @@
 <body>
   <!-- 主标题 -->
   <h1 style="font-size: 2.33em">帮帮拉</h1>
-</body>
-<div style="color:gray;">大学生互助平台</div>
-<hr>
-<!-- tab列表 -->
-<div class="tab">
-  <li><a>帮一帮</a></li>
-  <li><a>找一找</a></li>
-  <li><a>个人中心</a></li>
-</div>
-<div style="clear:both"></div>
+  <div style="color:gray;">大学生互助平台</div>
+  <hr>
+  
+  <!-- 首页按钮 -->
+  <div style="width:100px;height:100px;background-color:#FFF;border-radius:50%;box-shadow:3px 3px 10px;position: fixed;bottom: 32px;right: 32px;display: flex;">
+    <img src="resource/首页.svg" width="70%" height="70%" style="justify-content: center;">
+    </div>
+  <div style="clear:both"></div>
 
-<!-- 详情展示区域 -->
-<div id="app">
-  <big>
-    <div style="padding-left:500px;height: 400px;">
-      <img :src="images[0]" style="width:500px;height:400px;object-fit:cover;float: left;margin-left: -500px;">
-      <div style="float: left;margin-left:1em;width: 100%;height: 100%; line-height: auto;">
-        <h1>{{title}}</h1>
-        <div style="float: left;width:30%;">用户：{{nickName}}</div>
-        <div style="float: right;width:20%;">{{stars}}</div>
-        <div style="clear:both"></div>
-        <div>悬赏：{{score}}</div>
-        <div>标签：<b>{{mainLabel}}</b>|{{subLabel}}</div>
-        <div>发布日期：{{date}}</div>
-        <div>{{viewCount}}人看过，{{wantCount}}想要</div>
-        <button>联系同学</button><button>想要</button><a>举报</a>
+  <!-- 详情展示区域 -->
+  <div id="app">
+    <big>
+      <div style="padding-left:500px;height: 400px;">
+        <img :src="images[0]" style="width:500px;height:400px;object-fit:cover;float: left;margin-left: -500px;">
+        <div style="float: left;margin-left:1em;width: 100%;height: 100%; line-height: auto;">
+          <h1>{{title}}</h1>
+          <div style="float: left;width:30%;">用户：{{nickName}}</div>
+          <div style="float: right;width:20%;">{{stars}}</div>
+          <div style="clear:both"></div>
+          <div>悬赏：{{score}}</div>
+          <div>标签：<b>{{mainLabel}}</b>|{{subLabel}}</div>
+          <div>发布日期：{{date}}</div>
+          <div>{{viewCount}}人看过，{{wantCount}}想要</div>
+          <button>联系同学</button><button>想要</button><a>举报</a>
+        </div>
       </div>
+      <div style="height: auto;text-align: justify;">
+        简介：{{introduction}}
+      </div>
+    </big>
+    <!-- 展示图像 -->
+    <div v-for="img in images" style="width: 100%;">
+      <img :src="img" style="width:30%;height: 300;float: left;object-fit:cover;">
     </div>
-    <div style="height: auto;text-align: justify;">
-      简介：{{introduction}}
-    </div>
-  </big>
-  <!-- 展示图像 -->
-  <div v-for="img in images" style="width: 100%;">
-    <img :src="img" style="width:30%;height: 300;float: left;object-fit:cover;">
   </div>
-</div>
 
 </body>
 <script src="js/vue.js"></script>

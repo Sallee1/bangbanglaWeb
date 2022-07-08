@@ -12,43 +12,41 @@
 <body>
   <!-- 主标题 -->
   <h1 style="font-size: 2.33em">帮帮拉</h1>
-</body>
-<div style="color:gray;">大学生互助平台</div>
-<hr>
-<!-- tab列表 -->
-<div class="tab">
-  <li><a>帮一帮</a></li>
-  <li><a>找一找</a></li>
-  <li><a>个人中心</a></li>
-</div>
-<div style="clear:both"></div>
 
-<!-- 用户页 -->
-<div id="app">
-  <div class="backGroundDiv" style="padding-left:170px;padding-right:40px; height: 150px;">
-    <img :src="headIcon" style="width:150px;height:150px;object-fit:cover;float: left;margin-left: -150px;">
-
-    <div style="float: left;margin-left:1em; width: 100%;height: 100%; line-height: auto;">
-
-      <h2 style="margin: 0; float: left;">{{nickName}}</h2>
-      <div style="margin: 3px; float: right;display: flex;margin-top: -10px;">
-        <img src="resource/jinbi.svg" style="width: 64px;height: 64px;align-self:center;">
-        <div style="align-self:center;"> {{score}}</div>
-      </div>
-
-      <div style="clear:both;margin-bottom: 16px;">
-        {{introduction}}
-      </div>
-      <div style="float: left;"><big><b>信用星级：{{stars}}</b></big></div>
-      <div style="float: right">{{school}}</div>
+  <div style="color:gray;">大学生互助平台</div>
+  <hr>
+  <!-- 首页按钮 -->
+  <div style="width:100px;height:100px;background-color:#FFF;border-radius:50%;box-shadow:3px 3px 10px;position: fixed;bottom: 32px;right: 32px;display: flex;">
+    <img src="resource/首页.svg" width="70%" height="70%" style="justify-content: center;">
     </div>
-  </div>
+  <div style="clear:both"></div>
 
-  <div class="backGroundDiv">我的求助</div>
-  <div class="backGroundDiv">我的接单</div>
-  <div class="backGroundDiv">个人资料</div>
-  <div class="backGroundDiv">退出登录</div>
-</div>
+  <!-- 用户页 -->
+  <div id="app">
+    <div class="backGroundDiv" style="padding-left:170px;padding-right:40px; height: 150px;">
+      <img :src="headIcon" style="width:150px;height:150px;object-fit:cover;float: left;margin-left: -150px;">
+
+      <div style="float: left;margin-left:1em; width: 100%;height: 100%; line-height: auto;">
+
+        <h2 style="margin: 0; float: left;">{{nickName}}</h2>
+        <div style="margin: 3px; float: right;display: flex;margin-top: -10px;">
+          <img src="resource/jinbi.svg" style="width: 64px;height: 64px;align-self:center;">
+          <div style="align-self:center;"> {{score}}</div>
+        </div>
+
+        <div style="clear:both;margin-bottom: 16px;">
+          {{introduction}}
+        </div>
+        <div style="float: left;"><big><b>信用星级：{{stars}}</b></big></div>
+        <div style="float: right">{{school}}</div>
+      </div>
+    </div>
+
+    <div class="backGroundDiv">我的求助</div>
+    <div class="backGroundDiv">我的接单</div>
+    <div class="backGroundDiv">个人资料</div>
+    <div class="backGroundDiv">退出登录</div>
+  </div>
 
 </body>
 <script src="js/vue.js"></script>

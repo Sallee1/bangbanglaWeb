@@ -5,107 +5,108 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>帮帮拉-首页</title>
+	<title>帮帮拉-首页</title>
 	<link rel="stylesheet" type="text/css" href="css/global.css">
-	</head>
+</head>
 
-	<body>
-		<!-- 主标题 -->
-		<h1 style="font-size: 2.33em">帮帮拉</h1>
-	</body>
+<body>
+	<!-- 主标题 -->
+	<h1 style="font-size: 2.33em">帮帮拉</h1>
 
-		<!-- 列表展示区域 -->
-		<div id="app">
-			<div style="color:gray;">大学生互助平台</div>
-				<hr>
-				<!-- tab列表 -->
-			<div class="tab">									
-				<li v-on:click="sellPage"><a >帮一帮</a></li>
-				<li v-on:click="helpPage"><a >找一找</a></li>
-				<li v-on:click="selfPage"><a>个人中心</a></li>
-				
-			</div>
-			
-			<div style="clear:both"></div>
-			
-			<div v-for="item in itemList" style="padding-left:250px;height: 200px;">
-				<img :src="'resource/'+item.imagePath" style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
-				<div  style="left: right;margin-left:1em;max-width: 100%;max-height: 100%;">
-					<a v-bind:href="'itemDetail.html?id='+item.id" >
-						<h2>{{item.title}}</h2>
-					</a>
-						<small>
-							<div style="height: auto;text-align: justify;height:80px ;overflow: hidden;">
-								{{item.introduction}}
-							</div>
-						</small>
-					
-				</div>
+	<!-- 列表展示区域 -->
+	<div id="app">
+		<div style="color:gray;">大学生互助平台</div>
+		<hr>
+		<!-- tab列表 -->
+		<div class="tab">
+			<li v-on:click="sellPage"><a>帮一帮</a></li>
+			<li v-on:click="helpPage"><a>找一找</a></li>
+			<li v-on:click="selfPage"><a>个人中心</a></li>
+
+		</div>
+
+		<div style="clear:both"></div>
+
+		<div v-for="item in itemList" style="padding-left:250px;height: 200px;">
+			<img :src="'resource/'+item.imagePath"
+				style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
+			<div style="left: right;margin-left:1em;max-width: 100%;max-height: 100%;">
+				<a v-bind:href="'itemDetail.html?id='+item.id">
+					<h2>{{item.title}}</h2>
+				</a>
+				<small>
+					<div style="height: auto;text-align: justify;height:80px ;overflow: hidden;">
+						{{item.introduction}}
+					</div>
+				</small>
+
 			</div>
 		</div>
-	</body>
-	<script src="js/vue.js"></script>
-	<script src="js/axios.min.js"></script>
-	<script src="js/const.js"></script>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/const.js"></script>
 
-	<!--脚本-->
-	<script>
-		var config = {
-			"el": "#app",
-			"data": {
-				"userId":"",
-				"itemList":[],
-				"itemHelpList":[],
-				"itemSellList":[]
+<!--脚本-->
+<script>
+	var config = {
+		"el": "#app",
+		"data": {
+			"userId": "",
+			"itemList": [],
+			"itemHelpList": [],
+			"itemSellList": []
+		},
+		"methods": {
+			"sellPage": function () {
+				this.itemList = this.itemSellList
 			},
-			"methods": {
-				"sellPage": function() {
-					this.itemList = this.itemSellList
-				},
-				"helpPage":function(){
-					this.itemList = this.itemHelpList
-				},
-				"selfPage":function(){
-					var p=location.search
-					var array=p.split("/")
-					var url=array[0]+"/htmls/me.html?id="+this.userId
-					window.open(url)	
-				}
+			"helpPage": function () {
+				this.itemList = this.itemHelpList
 			},
-			"mounted": function() {
-				var p=location.search
-				var array=p.split(/&|=/)
-				
-				this.userId=array[1]
-				
-				var url = serverUrl+"/item/selectAll?id="+array[1]
-				+"&nickName="+array[3]
-				+"&universityName="+array[5]
-				+"&universityPos="+array[7]
-				+"&userName="+array[9]
-
-				axios.get(url)
-					.then(function(response) {
-						//response有6个属性，其中data放的是服务器返回的结果
-						//把serverResult里的data赋值给list
-						var list=response.data.data
-						var state = response.data.state	
-						//把list里的item按照主标签分类
-						for(i = 0;i < list.length;i++){
-							if(list[i].mainLabel == "交易"){
-								this.vue.itemSellList.push(list[i])							
-							}else{
-								this.vue.itemHelpList.push(list[i])
-							}
-						}
-					})
-					.catch(function(e) {
-						window.alert("联网出错")
-					})
-					
-				this.sellPage()
+			"selfPage": function () {
+				var p = location.search
+				var array = p.split("/")
+				var url = array[0] + "/htmls/me.html?id=" + this.userId
+				window.open(url)
 			}
-		 }
-	  var vue = new Vue(config)
-	</script>
+		},
+		"mounted": function () {
+			var p = location.search
+			var array = p.split(/&|=/)
+
+			this.userId = array[1]
+
+			var url = serverUrl + "/item/selectAll?id=" + array[1]
+				+ "&nickName=" + array[3]
+				+ "&universityName=" + array[5]
+				+ "&universityPos=" + array[7]
+				+ "&userName=" + array[9]
+
+			axios.get(url)
+				.then(function (response) {
+					//response有6个属性，其中data放的是服务器返回的结果
+					//把serverResult里的data赋值给list
+					var list = response.data.data
+					var state = response.data.state
+					//把list里的item按照主标签分类
+					for (i = 0; i < list.length; i++) {
+						if (list[i].mainLabel == "交易") {
+							this.vue.itemSellList.push(list[i])
+						} else {
+							this.vue.itemHelpList.push(list[i])
+						}
+					}
+				})
+				.catch(function (e) {
+					window.alert("联网出错")
+				})
+
+			this.sellPage()
+		}
+	}
+	var vue = new Vue(config)
+</script>
+
 </html>
