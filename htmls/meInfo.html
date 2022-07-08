@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帮帮拉-个人资料</title>
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+</head>
+
+<body>
+  <!-- 主标题 -->
+  <h1 style="font-size: 2.33em">帮帮拉</h1>
+</body>
+<div style="color:gray;">大学生互助平台</div>
+<hr>
+<!-- tab列表 -->
+<div class="tab">
+  <li><a>帮一帮</a></li>
+  <li><a>找一找</a></li>
+  <li><a>个人中心</a></li>
+</div>
+<div style="clear:both"></div>
+
+<!-- 用户详细页 -->
+<div id="app">
+  
+  <div style = "display:flex;">
+    <h2 style="margin-top: 1em;margin-bottom:1em;float: left;">基本信息</h2>
+    <div v-if="editIng" style="float: left;padding: 16px;align-self:center;"><a>保存</a> <a>取消</a> <span style="color: red;">{{errorInfo}}</span></div>
+    <div v-else style="float: left;padding: 16px;align-self:center;"><a>编辑</a></div>
+  </div>
+  <!--头像-->
+  <table style="line-height: 2em;">
+    <tr>
+      <td style="width: 5em;">用户名:</td>
+      <td style="width: 32em;">{{userName}}</td>
+    </tr>
+    <tr>
+      <td>性别:</td>
+      <td v-if="editIng"><input v-model="sex">
+      <td v-else>{{sex}}</td>
+    </tr>
+    <tr>
+      <td>昵称:</td>
+      <td v-if="editIng"><input v-model="nickName">
+      <td v-else>{{nickName}}</td>
+    </tr>
+    <tr>
+      <td>简介:</td>
+      <td v-if="editIng"><input v-model="introduction">
+      <td v-else>{{introduction}}</td>
+    </tr>
+  </table>
+  <h2 style="margin-top: 1em;margin-bottom:1em">实名信息</h2>
+  <table style="line-height: 2em;">
+    <tr>
+      <td style="width: 5em;">真实姓名:</td>
+      <td style="width: 32em;">{{realName}}</td>
+    </tr>
+    <tr>
+      <td>身份证号:</td>
+      <td>{{idCard}}</td>
+    </tr>
+    <tr>
+      <td>手机号:</td>
+      <td>{{tel}}</td>
+    </tr>
+    <tr>
+      <td>就读大学:</td>
+      <td>{{university}}</td>
+    </tr>
+    <tr>
+      <td>学号:</td>
+      <td>{{studentId}}</td>
+    </tr>
+  </table>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/const.js"></script>
+
+<!--脚本-->
+<script>
+  var config = {
+    "el": "#app",
+    "data": {
+      "errorInfo":"这里回显错误信息",
+      "editIng":false,
+
+      "userName": "barbara",
+      "headIcon": "resource/morentouxiang.svg",
+      "sex":"女",
+      "nickName": "闪耀协奏",
+      "introduction": "西风大学声乐生一枚",
+      "realName":"芭芭拉",
+      "idCard":"6************* ***1",
+      "tel":"1*********6",
+      "university": "蒙德·西风大学",
+      "studentId":"2**********5"
+    }
+  }
+  var vue = new Vue(config)
+</script>
+
+</html>

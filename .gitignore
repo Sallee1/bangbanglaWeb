@@ -5,6 +5,7 @@ bin-release/
 [Bb]in/
 [Pp]s1
 [Bb]at
+resource/
 
 # Other files and folders
 .settings/
