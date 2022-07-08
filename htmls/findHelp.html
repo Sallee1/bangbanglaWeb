@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>帮帮拉-详细信息</title>
+  <title>帮帮拉-发起需求</title>
   <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 
@@ -23,33 +23,34 @@
 </div>
 <div style="clear:both"></div>
 
-<!-- 详情展示区域 -->
+<!-- 列表展示区域 -->
 <div id="app">
-  <big>
-    <div style="padding-left:500px;height: 400px;">
-      <img :src="images[0]" style="width:500px;height:400px;object-fit:cover;float: left;margin-left: -500px;">
-      <div style="float: left;margin-left:1em;width: 100%;height: 100%; line-height: auto;">
-        <h1>{{title}}</h1>
-        <div style="float: left;width:30%;">用户：{{nickName}}</div>
-        <div style="float: right;width:20%;">{{stars}}</div>
-        <div style="clear:both"></div>
-        <div>悬赏：{{score}}</div>
-        <div>标签：<b>{{mainLabel}}</b>|{{subLabel}}</div>
-        <div>发布日期：{{date}}</div>
-        <div>{{viewCount}}人看过，{{wantCount}}想要</div>
-        <button>联系同学</button><button>想要</button><a>举报</a>
-      </div>
-    </div>
-    <div style="height: auto;text-align: justify;">
-      简介：{{introduction}}
-    </div>
-  </big>
-  <!-- 展示图像 -->
-  <div v-for="img in images" style="width: 100%;">
-    <img :src="img" style="width:30%;height: 300;float: left;object-fit:cover;">
-  </div>
+<table border="1">
+  <tr>
+    <td>标题：</td>
+    <td><input v-model="title"></td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">简介：</td>
+    <td><textarea v-model="introduction" style="width:100%;height: 15em;font-size: 1em;"></textarea></td>
+  </tr>
+  <tr>
+    <td>主标签：</td>
+    <td>
+      <select v-model="mainLabel">
+        <option>二手贩卖</option>
+        <option>同学互助</option>
+      </select>
+      副标签：<input style = "width: 21em;"  v-model="subLabel">
+    </td>
+  </tr>
+  <tr>
+    <td>上传图像</td>
+    <td><button>上传</button>{{images}}</td>
+  </tr>
+</table>
+<button>提交需求</button> 一旦提交只能修改奖赏
 </div>
-
 </body>
 <script src="js/vue.js"></script>
 <script src="js/axios.min.js"></script>
@@ -70,9 +71,14 @@
       "introduction": "七消强义些许统，打类选于济到，观加生如持，详得卧析热。 是干员生议石较复外军，结分文外正此下部有，会查3吹治详呆J。 单做动质带单热常直想又些成年把，叫去离金状边带豆清更这次S。 口千去布风难派何，现证世极先西头，群T歼律两将。 除两专两且工段强效情，没在而院目直非个队不，成革询我励坟花在。 王南出特南队现场基设，资山八刷找务九。 养没器回个子体四号命动业律，效外发三细弦李务社居无。 经件话该深军几，影科界然也管相，确屈开酸吩。 说政团现信干口力阶，九头土行习价义，少在豆扮这在别。 金且社除中住就强打，工管说理通专多，原始屈茅歼运隶。 问为话细论求具志书指都，往平族气E次坑改。 引几说快段叫论报，它系知律极治何，市W每求压水。 观定同体下直要采该，采他样增整外验表斯，完便录增团断劫大。 心消题构最说化斗报的多，只子规级争活再论月太，响将A示流斯圆派丧。 工必山越级界根治无，道区除收法快条改，火酸E识题题革。 代被争号种关众把三争心，易特政南验求钉门员。",
       "mainLabel": "二手交易",
       "subLabel": "人相,解及划",
+      "date": "2513-05-29",
+      "stars": "★★★★4.5",
+      "nickName": "热李按",
+      "score": 11384,
+      "viewCount": 13145,
+      "wantCount": 125
     }
   }
   var vue = new Vue(config)
 </script>
-
 </html>
