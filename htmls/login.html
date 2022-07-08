@@ -1,51 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>帮帮拉-详细信息</title>
-  <link rel="stylesheet" type="text/css" href="css/global.css">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>帮帮拉-登录</title>
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+	</head>
 
-<body>
-  <!-- 主标题 -->
-  <h1 style="font-size: 2.33em">帮帮拉</h1>
-</body>
-<div style="color:gray;">大学生互助平台</div>
-<hr>
+	<body>
+		<!-- 主标题 -->
+		<h1 style="font-size: 2.33em">帮帮拉</h1>
+	</body>
+	<div style="color:gray;">大学生互助平台</div>
+	<hr>
 
-<div style="clear:both"></div>
+	<div style="clear:both"></div>
 
-<!-- 详情展示区域 -->
-<div id="app" style="width:60%;margin:0 auto;">
-  <table>
-    <tr>
-      <td>用户名</td><td><input v-model = "userName" style="width: 20em;"></td>
-    </tr>
-    <tr>
-      <td>密码</td><td><input type="password" v-model = "password" style="width: 20em;"></td>
-    </tr>
-  </table>
-  <button>登录</button><button>注册</button><a>忘记密码</a>
-</div>
+	<!-- 详情展示区域 -->
+	<div id="app" style="width:60%;margin:0 auto;">
+		<table>
+			<tr>
+				<td>用户名:</td>
+				<td><input v-model="userName" style="width: 20em;"></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" v-model="password" style="width:20em;"></td>
+			</tr>
+		</table>
+		<button v-on:click="login">登录</button><button>注册</button><a>忘记密码</a>
+	</div>
 
-</body>
-<script src="js/vue.js"></script>
-<script src="js/axios.min.js"></script>
-<script src="js/const.js"></script>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.min.js"></script>
+	<script src="js/const.js"></script>
 
-<!--脚本-->
-<script>
-  var config = {
-    "el": "#app",
-    "data": {
-      "userName":"babara",
-      "password":"bababa0001"
-    }
-  }
-  var vue = new Vue(config)
-</script>
+	<!--脚本-->
+	<script>
+		var config = {
+			"el": "#app",
+			"data": {
+				"userName": "",
+				"password": "",
+				"userId":"",
+				"nickName":"",
+				"universityPos":"",
+				"universityName":""
+			},
+			"methods":{
+				"login":function(){
+					var url=serverUrl
+					+"/user/login?password="+this.password
+					+"&userName="+this.userName
+					axios.get(url)
+						.then(function(response) {
+							var data = response.data.data
+							this.vue.userId = data.id
+							this.vue.nickName = data.nickName
+							this.vue.universityPos = data.universityPos
+							this.vue.universityName = data.universityName
+							
+							window.location.href='item.html?userId='+ data.id
+												+'&nickName='+data.nickName
+												+'&universityName='+data.universityName
+												+'&universityPos='+data.universityPos
+												+'&userName='+this.vue.userName
+						})
+						.catch(function(e) {
+							window.alert("联网出错")
+						})
+				},
+				"register":function(){
+					
+				}
+			}
+		}
+		var vue = new Vue(config)
+	</script>
 
 </html>

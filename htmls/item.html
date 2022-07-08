@@ -25,7 +25,7 @@
 
 		<!-- 列表展示区域 -->
 		<div id="app">
-			<div v-for="item in itemList" style="padding-left:250px;height: 200px;">
+			<div v-for="item in itemHelpList" style="padding-left:250px;height: 200px;">
 				<img :src="item.image" style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
 				<div style="float: right;margin-left:1em;max-width: 100%;max-height: 100%;">
 					<h2>{{item.title}}</h2>
@@ -47,13 +47,14 @@
 		var config = {
 			"el": "#app",
 			"data": {
-				"categoryList"：[],
+				"categoryList":[],
 				"itemHelpList":[],
 				"itemSellList":[]
 			},
 			"methods": {
-				"selectByItemMainLabel": function(id) {
-					var url = serverUrl + "/item/selectByCategoryId?categoryId=" + id
+				"selectByItemMainLabel": function() {
+					
+					
 					axios.get(url)
 						.then(function(response) {
 							var serverResult = response.data
@@ -67,15 +68,31 @@
 			},
 			"mounted": function() {
 				// this.selectByCategoryId(1)
-				var url = serverUrl + "/item/selectAll"
+				var p=location.search//?id=1
+				var array=p.split(/&|=/)//[0]=?id  [1]=1
+				var url = serverUrl+"/item/selectAll?id="+array[1]
+				+"&nickName="+array[3]
+				+"&universityName="+array[5]
+				+"&universityPos="+array[7]
+				+"&userName="+array[9]
+
 				axios.get(url)
 					.then(function(response) {
 						//response有6个属性，其中data放的是服务器返回的结果
 						//把serverResult里的data赋值给list
-						var list = response.data.data
+						var list=response.data.data
+						var state = response.data.state
+						console.log(list)
 						for(i = 0;i < list.length;i++){
-							上次编辑到这
+							if(list[i].mainLabel == "SELL"){
+								this.vue.itemSellList.add(list[i])
+								window.alert("出售物品")
+							}else{
+								this.vue.itemHelpList.add(list[i])
+								window.alert("求助")
+							}
 						}
+						
 					})
 					.catch(function(e) {
 						window.alert("联网出错")
