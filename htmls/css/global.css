@@ -1,0 +1,46 @@
+@media screen and (min-width:1280px) {
+  body {
+    width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width:1280px) {
+  body {
+    width: 100%;
+  }
+}
+
+h1,
+h2 {
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+body {
+  font-size: 1.5em;
+}
+
+button{
+  width: 10em;
+  height: 2em;
+  font-size: 1em;
+  margin-right: 1em;
+  border: 0;
+  font:bolder;
+  color: skyblue;
+  border-radius: 10px;
+  background-image: linear-gradient(rgb(18, 94, 235), rgb(38, 28, 75));
+}
+
+.tab>li {
+  width: 10em;
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  color: skyblue;
+  background-image: linear-gradient(rgb(18, 94, 235), rgb(38, 28, 75));
+  margin-right: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}

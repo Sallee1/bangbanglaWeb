@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帮帮拉-首页</title>
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+</head>
+
+<body>
+  <!-- 主标题 -->
+  <h1 style="font-size: 2.33em">帮帮拉</h1>
+</body>
+<div style="color:gray;">大学生互助平台</div>
+<hr>
+<!-- tab列表 -->
+<div class="tab">
+  <li><a>帮一帮</a></li>
+  <li><a>找一找</a></li>
+  <li><a>个人中心</a></li>
+</div>
+<div style="clear:both"></div>
+
+<!-- 列表展示区域 -->
+<div id="app">
+  <div v-for="item in itemList" style="padding-left:250px;height: 200px;">
+    <img :src="item.image"
+      style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
+    <div style="float: right;margin-left:1em;max-width: 100%;max-height: 100%;">
+      <h2>{{item.title}}</h2>
+      <small>
+        <div style="height: auto;text-align: justify;height:80px ;overflow: hidden;">
+          {{item.introduction}}
+        </div>
+      </small>
+      <div style="float: left;width:80%">标签：<b>{{item.mainLabel}}</b>|{{item.subLabel}}</div>
+      <div style="float: right;width:20%;text-align: right;">{{item.date}}</div>
+      <div style="float: left;width:20%;">{{item.stars}}</div>
+      <div style="float: left;width:30%;">{{item.nickName}}</div>
+      <div style="float: right;width:10%;text-align: right;">W{{item.wantCount}}</div>
+      <div style="float: right;width:10%;text-align: right;">V{{item.viewCount}}</div>
+      <div style="float: right;width:20%;text-align: right;">悬赏：{{item.score}}</div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/const.js"></script>
+
+<!--脚本-->
+<script>
+  debugger
+  var config = {
+    "el": "#app",
+    "data": {
+      "itemList":[
+        {
+          "image":"resource/placeholder.png",
+          "title":"美照重需近管类起命带月运状空投厂两",
+          "introduction":"七消强义些许统，打类选于济到，观加生如持，详得卧析热。 是干员生议石较复外军，结分文外正此下部有，会查3吹治详呆J。 单做动质带单热常直想又些成年把，叫去离金状边带豆清更这次S。 口千去布风难派何，现证世极先西头，群T歼律两将。 除两专两且工段强效情，没在而院目直非个队不，成革询我励坟花在。 王南出特南队现场基设，资山八刷找务九。 养没器回个子体四号命动业律，效外发三细弦李务社居无。 经件话该深军几，影科界然也管相，确屈开酸吩。 说政团现信干口力阶，九头土行习价义，少在豆扮这在别。 金且社除中住就强打，工管说理通专多，原始屈茅歼运隶。 问为话细论求具志书指都，往平族气E次坑改。 引几说快段叫论报，它系知律极治何，市W每求压水。 观定同体下直要采该，采他样增整外验表斯，完便录增团断劫大。 心消题构最说化斗报的多，只子规级争活再论月太，响将A示流斯圆派丧。 工必山越级界根治无，道区除收法快条改，火酸E识题题革。 代被争号种关众把三争心，易特政南验求钉门员。",
+          "mainLabel":"二手交易",
+          "subLabel":"人相,解及划",
+          "date":"2513-05-29",
+          "stars":"4.2★★★★",
+          "nickName":"热李按",
+          "score":11384,
+          "viewCount":13145,
+          "wantCount":125
+        },
+        {
+          "image":"resource/placeholder.png",
+          "title":"原并农属验认没才土取三动合专租他接",
+          "introduction":"把件总近划原须常规由，米事必定使资发面，带其屈出束建主重。 还热式间省动，外来便走，规露方山。 广会细满红当很之类增，类打化基制许运照，造东U吼海清两中。 时条按就术求则装建七，内叫家下她式了维总，此级6后新学存孟。 结义部求动火光石且价条列三，律展三常从力始并他队政，道矿府建但越值S连权积。 想群切农元，选其的能京，Y画9。 动质其口业支状离即量火省片，两取同族领陕量期劳你行。 便切打许热要道形老建争，劳育段大变金满实保业，万生孤向卧伶导酸花。 阶一位分代么月少群，运半地最下当阶手情，小杨针除秤接丽。 日去积价量制量多，美金强名整象，属委露些数你。 见进名与广消划王，美看转要上京，行豆屈整论时。 变决约族细价南养金高明，中部格每水流六存结，角效Q整影整而处。 市布确五高委与，气也看他华资布，织李开解土。 种向报风问都学手总到，这省书队劳圆所本按，该技A往很H你史。 志处备个象效直率，断与道志年为声，刷况址候建。 青代压几切群已族常那里得，不把明酸速隶K容发本。",
+          "mainLabel":"同学互助",
+          "subLabel":"质作过华南",
+          "date":"2186-11-12",
+          "stars":"1.8★★",
+          "nickName":"革身须律厂品",
+          "score":1513,
+          "viewCount":120,
+          "wantCount":55
+        },
+        {
+          "image":"resource/placeholder.png",
+          "title":"八区维土说增公象务验海家装确科京每",
+          "introduction":"之头极好门内安油技，资矿从证油与术目根，马霸没3歼J芦。 我也来根交志认，造流全H自抓。 题小转先置五军运那规因，革实列都并受备并划海看，明报I号变杨火称李。 们内住住件养信或需专身小，力片新院金称有她江你参，只办弦压是什豆影它节。 重青量西要式社基断，声采共弦自志。 器持商日明林况办出打，多感今清步每米还色证，际出O色单作收更。 际构权须观工调亲那公按，花快无起即照转联义，火强励再选邮率心长。 型指民是运你定规马目，务其学头住阶存六西，种情屈段8原越届。 象听合已车即术自它厂反以，心何派青须毛书争组条热，有表S杨伴展苍整极再。 自节则较种值放，火样图持须受，备7山体6。 完务量号少音分音飞上，中重花使把中求斯，总选H时无建述时。 和几带为较说北关族，复见例电京亲斗起，年广G步与两最。 备林历斯需取处群难准业，受图主计如小清土群，及也J折路能枝子杨。 参容约问市将矿细，严东条任质变老，组界届论住子材。 根下治统研实利根际保，儿子规成孟码加角。 子须热我书认作，织收力化省果系，该Y赤置切。",
+          "mainLabel":"二手交易",
+          "subLabel":"社隶，材管",
+          "date":"2048-06-20",
+          "stars":"4.9★★★★★",
+          "nickName":"改油马",
+          "score":80,
+          "viewCount":1085,
+          "wantCount":377
+        },
+        {
+          "image":"resource/placeholder.png",
+          "title":"家际百对京例适支叫低记需家抗花报励",
+          "introduction":"者连候文的酸行查起及老，形层器气四理样位发段争，技感杏新均壳识里农。 天各性时听界万要问构会，直求统表劳生数面已子，利人届员伯材新口去。 保研线西不况后基求太省维感真，取反学小但-府变以飞G。 五最正积界运们其该亲能，况个支出始片克拉认，县力X路群选技坟万。 越成龙理市表因，叫万离酸白切建，实L族拉询。 满高维具向干作度圆红，必法程医码象织。 年切华广器政历铁，基难看毛厂或，眼百两豆百芽。 生采复近程见离很近和立，研于展并六两意解证铁，果两7强百少H说批。 争即必越商酸利再指七，全本至一改种压气，革统J枪现位镰蹦。 养可世百存入已又变白细，反强置也内手治验合度，效知J录受芬联复特。 委往团同与速个亲中队，任议层眼第济才了，式委Q枕起易给范。 算意安专几长事教为几，重期行结济明常文年，但业肃通足伶传作。 变长次些真所运且，素道米并理不理，布医万杏事表。 再目海等类选色进三于区，证把置路回目记值路到，种决详易它克四资位。 部存化素话素南压斗文，劳才织较及量变照，很其7运院细霸隶。",
+          "mainLabel":"同学互助",
+          "subLabel":"流七，飞极",
+          "date":"2342-04-28",
+          "stars":"0.6★",
+          "nickName":"热李O间起代按",
+          "score":1285,
+          "viewCount":134,
+          "wantCount":15
+        },
+      ]
+    }
+  }
+  debugger
+  var vue = new Vue(config)
+</script>
+</html>
