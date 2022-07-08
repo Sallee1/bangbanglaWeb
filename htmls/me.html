@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帮帮拉-详细信息</title>
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+</head>
+
+<body>
+  <!-- 主标题 -->
+  <h1 style="font-size: 2.33em">帮帮拉</h1>
+</body>
+<div style="color:gray;">大学生互助平台</div>
+<hr>
+<!-- tab列表 -->
+<div class="tab">
+  <li><a>帮一帮</a></li>
+  <li><a>找一找</a></li>
+  <li><a>个人中心</a></li>
+</div>
+<div style="clear:both"></div>
+
+<!-- 用户页 -->
+<div id="app">
+  <div class="backGroundDiv" style="padding-left:170px;padding-right:40px; height: 150px;">
+    <img :src="headIcon" style="width:150px;height:150px;object-fit:cover;float: left;margin-left: -150px;">
+
+    <div style="float: left;margin-left:1em; width: 100%;height: 100%; line-height: auto;">
+
+      <h2 style="margin: 0; float: left;">{{nickName}}</h2>
+      <div style="margin: 3px; float: right;display: flex;margin-top: -10px;">
+        <img src="resource/jinbi.svg" style="width: 64px;height: 64px;align-self:center;">
+        <div style="align-self:center;"> {{score}}</div>
+      </div>
+
+      <div style="clear:both;margin-bottom: 16px;">
+        {{introduction}}
+      </div>
+      <div style="float: left;"><big><b>信用星级：{{stars}}</b></big></div>
+      <div style="float: right">{{school}}</div>
+    </div>
+  </div>
+
+  <div class="backGroundDiv">我的求助</div>
+  <div class="backGroundDiv">我的接单</div>
+  <div class="backGroundDiv">个人资料</div>
+  <div class="backGroundDiv">退出登录</div>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/const.js"></script>
+
+<!--脚本-->
+<script>
+  var config = {
+    "el": "#app",
+    "data": {
+      "headIcon": "resource/morentouxiang.svg",
+      "nickName": "闪耀协奏",
+      "score": 625,
+      "introduction": "西风大学声乐生一枚",
+      "stars": "★★★★★4.9",
+      "school": "蒙德·西风大学"
+    }
+  }
+  var vue = new Vue(config)
+</script>
+
+</html>
