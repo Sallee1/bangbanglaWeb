@@ -2,116 +2,108 @@
 <html lang="zh">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>帮帮拉-首页</title>
-  <link rel="stylesheet" type="text/css" href="css/global.css">
-</head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>帮帮拉-首页</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	</head>
 
-<body>
-  <!-- 主标题 -->
-  <h1 style="font-size: 2.33em">帮帮拉</h1>
-</body>
-<div style="color:gray;">大学生互助平台</div>
-<hr>
-<!-- tab列表 -->
-<div class="tab">
-  <li><a>帮一帮</a></li>
-  <li><a>找一找</a></li>
-  <li><a>个人中心</a></li>
-</div>
-<div style="clear:both"></div>
+	<body>
+		<!-- 主标题 -->
+		<h1 style="font-size: 2.33em">帮帮拉</h1>
+	</body>
 
-<!-- 列表展示区域 -->
-<div id="app">
-  <div v-for="item in itemList" style="padding-left:250px;height: 200px;">
-    <img :src="item.image"
-      style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
-    <div style="float: left;margin-left:1em;max-width: 100%;max-height: 100%;">
-      <h2>{{item.title}}</h2>
-      <small>
-        <div style="height: auto;text-align: justify;height:80px ;overflow: hidden;">
-          {{item.introduction}}
-        </div>
-      </small>
-      <div style="float: left;width:80%">标签：<b>{{item.mainLabel}}</b>|{{item.subLabel}}</div>
-      <div style="float: right;width:20%;text-align: right;">{{item.date}}</div>
-      <div style="float: left;width:20%;">{{item.stars}}</div>
-      <div style="float: left;width:30%;">{{item.nickName}}</div>
-      <div style="float: right;width:10%;text-align: right;">W{{item.wantCount}}</div>
-      <div style="float: right;width:10%;text-align: right;">V{{item.viewCount}}</div>
-      <div style="float: right;width:20%;text-align: right;">悬赏：{{item.score}}</div>
+		<!-- 列表展示区域 -->
+		<div id="app">
+			<div style="color:gray;">大学生互助平台</div>
+				<hr>
+				<!-- tab列表 -->
+			<div class="tab">									
+				<li v-on:click="sellPage"><a >帮一帮</a></li>
+				<li v-on:click="helpPage"><a >找一找</a></li>
+				<li v-on:click="selfPage"><a>个人中心</a></li>
+				
+			</div>
+			
+			<div style="clear:both"></div>
+			
+			<div v-for="item in itemList" style="padding-left:250px;height: 200px;">
+				<img :src="'resource/'+item.imagePath" style="width:250px;height:200px;object-fit:cover;float: left;margin-left: -250px;">
+				<div  style="left: right;margin-left:1em;max-width: 100%;max-height: 100%;">
+					<a v-bind:href="'itemDetail.html?id='+item.id" >
+						<h2>{{item.title}}</h2>
+					</a>
+						<small>
+							<div style="height: auto;text-align: justify;height:80px ;overflow: hidden;">
+								{{item.introduction}}
+							</div>
+						</small>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.min.js"></script>
+	<script src="js/const.js"></script>
 
-    </div>
-  </div>
-</div>
-</body>
-<script src="js/vue.js"></script>
-<script src="js/axios.min.js"></script>
-<script src="js/const.js"></script>
+	<!--脚本-->
+	<script>
+		var config = {
+			"el": "#app",
+			"data": {
+				"userId":"",
+				"itemList":[],
+				"itemHelpList":[],
+				"itemSellList":[]
+			},
+			"methods": {
+				"sellPage": function() {
+					this.itemList = this.itemSellList
+				},
+				"helpPage":function(){
+					this.itemList = this.itemHelpList
+				},
+				"selfPage":function(){
+					var url=serverUrl+"/htmls/me.html?id="+this.userId
+					window.open(url)	
+				}
+			},
+			"mounted": function() {
+				var p=location.search
+				var array=p.split(/&|=/)
+				
+				this.userId=array[1]
+				
+				var url = serverUrl+"/item/selectAll?id="+array[1]
+				+"&nickName="+array[3]
+				+"&universityName="+array[5]
+				+"&universityPos="+array[7]
+				+"&userName="+array[9]
 
-<!--脚本-->
-<script>
-  var config = {
-    "el": "#app",
-    "data": {
-      "itemList":[
-        {
-          "image":"resource/placeholder.png",
-          "title":"美照重需近管类起命带月运状空投厂两",
-          "introduction":"七消强义些许统，",
-          "mainLabel":"二手交易",
-          "subLabel":"人相,解及划",
-          "date":"2513-05-29",
-          "stars":"4.2★★★★",
-          "nickName":"热李按",
-          "score":11384,
-          "viewCount":13145,
-          "wantCount":125
-        },
-        {
-          "image":"resource/placeholder.png",
-          "title":"原并农属验认没才土取三动合专租他接",
-          "introduction":"不把明酸速隶K容发本。",
-          "mainLabel":"同学互助",
-          "subLabel":"质作过华南",
-          "date":"2186-11-12",
-          "stars":"1.8★★",
-          "nickName":"革身须律厂品",
-          "score":1513,
-          "viewCount":120,
-          "wantCount":55
-        },
-        {
-          "image":"resource/placeholder.png",
-          "title":"八区维土说增公象务验海家装确科京每",
-          "introduction":" 子须热我书认作，织收力化省果系，该Y赤置切。",
-          "mainLabel":"二手交易",
-          "subLabel":"社隶，材管",
-          "date":"2048-06-20",
-          "stars":"4.9★★★★★",
-          "nickName":"改油马",
-          "score":80,
-          "viewCount":1085,
-          "wantCount":377
-        },
-        {
-          "image":"resource/placeholder.png",
-          "title":"家际百对京例适支叫低记需家抗花报励",
-          "introduction":"部存化素话素南压斗文，劳才织较及量变照，很其7运院细霸隶。",
-          "mainLabel":"同学互助",
-          "subLabel":"流七，飞极",
-          "date":"2342-04-28",
-          "stars":"0.6★",
-          "nickName":"热李O间起代按",
-          "score":1285,
-          "viewCount":134,
-          "wantCount":15
-        },
-      ]
-    }
-  }
-  var vue = new Vue(config)
-</script>
+				axios.get(url)
+					.then(function(response) {
+						//response有6个属性，其中data放的是服务器返回的结果
+						//把serverResult里的data赋值给list
+						var list=response.data.data
+						var state = response.data.state	
+						//把list里的item按照主标签分类
+						for(i = 0;i < list.length;i++){
+							if(list[i].mainLabel == "交易"){
+								this.vue.itemSellList.push(list[i])							
+							}else{
+								this.vue.itemHelpList.push(list[i])
+							}
+						}
+					})
+					.catch(function(e) {
+						window.alert("联网出错")
+					})
+					
+				this.sellPage()
+			}
+		 }
+	  var vue = new Vue(config)
+	</script>
 </html>
