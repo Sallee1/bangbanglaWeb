@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帮帮拉-我的求助</title>
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+</head>
+
+<body>
+  <!-- 主标题 -->
+  <h1 style="font-size: 2.33em">帮帮拉</h1>
+  <div style="color:gray;">大学生互助平台</div>
+  <hr>
+  <!-- tab列表 -->
+  <div class="tab">
+    <li><a>帮一帮</a></li>
+    <li><a>找一找</a></li>
+    <li><a>个人中心</a></li>
+  </div>
+  <div style="clear:both"></div>
+
+  <!-- 列表展示区域 -->
+  <div id="app">
+    <h2>我的求助</h2>
+    <hr>
+    <div v-for="item in itemList">
+      <div>
+        <div style="float: left;">
+          <h3 style="float: left;">{{item.title}}<h3>
+        </div>
+        <span style="float: right;display: flex">
+          <span style="align-self: center;">{{item.date}} </span>
+          <h3 style="float: right;">{{item.state}}<h3></h3>
+        </span>
+        <div style="clear:both"></div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</body>
+
+<script src=" js/vue.js">
+</script>
+<script src="js/axios.min.js"></script>
+<script src="js/const.js"></script>
+
+<!--脚本-->
+<script>
+  var config = {
+    "el": "#app",
+    "data": {
+      itemList: [
+        {
+          "title": "美照重需近管类起命带月运状空投厂两",
+          "date": "2048-06-20",
+          "state": "已完成"
+        },
+        {
+          "title": "家际百对京例适支叫低记需家抗花报励",
+          "date": "2513-05-29",
+          "state": "进行中"
+        },
+        {
+          "title": "八区维土说增公象务验海家装确科京每",
+          "date": "2342-04-28",
+          "state": "已取消"
+        },
+      ]
+    }
+  }
+  var vue = new Vue(config)
+</script>
+
+</html>
