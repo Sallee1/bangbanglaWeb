@@ -66,7 +66,9 @@
 					this.itemList = this.itemHelpList
 				},
 				"selfPage":function(){
-					var url=serverUrl+"/htmls/me.html?id="+this.userId
+					var p=location.search
+					var array=p.split("/")
+					var url=array[0]+"/htmls/me.html?id="+this.userId
 					window.open(url)	
 				}
 			},
