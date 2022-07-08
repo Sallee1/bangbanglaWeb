@@ -27,7 +27,7 @@
         <h2 style="margin-top :0">{{item.title}}</h2>
         <div style="float: left;width:20%;text-align: left;">悬赏：{{item.score}}</div>
         <div style="float: left;width:80%">标签：<b>{{item.mainLabel}}</b>|{{item.subLabel}}</div>
-        
+  
         <div style="clear:both"></div>
         <small>
           <div style="height: auto;text-align: justify;height:128px ;overflow: hidden;">
@@ -36,7 +36,78 @@
         </small>
       </div>
     </div>
+    <!--这里根据state的值显示不同的Ui-->
+    <!--买家，等待-->
+    <div v-if="state==0&&isBuyer">
+      <h1 style="text-align:center">您的要求正在受理中，请耐心等待</h1>
+    </div>
+    <!--卖家，等待-->
+    <div v-else-if="state==0&&!isBuyer">
+      <h1 style="text-align:center;margin-bottom: 1em;">共有xx个人愿意帮助你</h1>
+      <div style="height: 3em;display:flex;">
+        <!--此处添加VFor-->
+        <span style="max-width: 10%;align-self: center;">
+          <img src="resource/morentouxiang.svg" width="100px">
+        </span>
+        <span style="width: 30%;align-self: center;">
+          <h2 style="margin-top:0">UserName</h2>
+        </span>
+        <span style="width: 20%;align-self: center;">
+          <h2 style="margin-top:0">4.5分</h2>
+        </span>
+        <span style="width: 20%;align-self: center;">
+          <button>选择</button>
+        </span>
+        <span style="width: 20%;align-self: center;">
+          <button>联系同学</button>
+        </span>
+      </div>
+    </div>
+    <!--支付方-->
+    <div v-else-if="state==1&&payState==0">
+      <h1 style="text-align:center">共需要支付xx帮币，请点击下方按钮支付</h1>
+      <button style="margin-top:1em;">支付</button>
+    </div>
+
+    <!--收款方-->
+    <div v-else-if="state==1&&payState==1">
+      <h1 style="text-align:center">请等待对方完成支付</h1>
+    </div>
+
+    <!--买家，进行中-->
+    <div v-else-if="state==2&&isBuyer">
+      <h1 style="text-align:center">对方选中您来帮助他，请即时联系</h1>
+      <button style="margin-top:1em;">联系</button><a>举报</a>
+    </div>
+
+    <!--卖家，进行中-->
+    <div v-else-if="state==2&&!isBuyer">
+      <h1 style="text-align:center">对方已收到您的消息，请即时联系</h1>
+      <button style="margin-top:1em;">确认</button><button style="margin-top:1em;">联系</button><a>举报</a>
+    </div>
+    
+    <!--这里按需要写上条件，是评价按钮，并且原则上不能评价两次-->
+    <div v-else-if="state==3&&payState==0">
+      <h2 style="float: left;margin-bottom: 30px;">请为对方的服务打分</h2><input type="number" style="width: 3em;height: 1.5em;align-self: center;">
+
+      <div style="clear:both"></div>
+      <textarea style="width: 100%;height:15em;"></textarea>
+      <button style="margin-top:1em;">提交</button>
+    </div>
+    <!--这里是结束的界面-->
+    <div v-else-if="state==3&&payState==1">
+      <h1 style="text-align:center">服务已结束，感谢您的使用</h1>
+    </div>
+
+    <!--这里是被取消的界面-->
+    <div v-else-if="state==4">
+      <h1 style="text-align:center">很遗憾你未被选中</h1>
+    </div>
+
   </div>
+
+
+
 </body>
 <script src="js/vue.js"></script>
 <script src="js/axios.min.js"></script>
@@ -47,13 +118,15 @@
   var config = {
     "el": "#app",
     "data": {
+      state:0,
+      isBuyer:false,
+      payState:1,
       item:{"image": "resource/placeholder.png",
       "title": "美照重需近管类起命带月运状空投厂两",
       "introduction": "七消强义些许统，打类选于济到，观加生如持，详得卧析热。 是干员生议石较复外军，结分文外正此下部有，会查3吹治详呆J。 单做动质带单热常直想又些成年把，叫去离金状边带豆清更这次S。 口千去布风难派何，现证世极先西头，群T歼律两将。 除两专两且工段强效情，没在而院目直非个队不，成革询我励坟花在。 王南出特南队现场基设，资山八刷找务九。 养没器回个子体四号命动业律，效外发三细弦李务社居无。 经件话该深军几，影科界然也管相，确屈开酸吩。 说政团现信干口力阶，九头土行习价义，少在豆扮这在别。 金且社除中住就强打，工管说理通专多，原始屈茅歼运隶。 问为话细论求具志书指都，往平族气E次坑改。 引几说快段叫论报，它系知律极治何，市W每求压水。 观定同体下直要采该，采他样增整外验表斯，完便录增团断劫大。 心消题构最说化斗报的多，只子规级争活再论月太，响将A示流斯圆派丧。 工必山越级界根治无，道区除收法快条改，火酸E识题题革。 代被争号种关众把三争心，易特政南验求钉门员。",
       "mainLabel": "二手交易",
       "subLabel": "人相,解及划",
       "score":500}
-
     }
   }
   var vue = new Vue(config)
